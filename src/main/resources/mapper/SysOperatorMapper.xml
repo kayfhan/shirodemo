@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.kay.mapper.SysOperatorMapper">
+    <resultMap id="BaseResultMap" type="me.kay.entity.sys.SysOperator">
+        <id column="operator_id" jdbcType="BIGINT" property="operatorId"/>
+        <result column="operator_name" jdbcType="BIGINT" property="operatorName"/>
+        <result column="operator_url" jdbcType="VARCHAR" property="operatorUrl"/>
+        <result column="operator_state" jdbcType="BIGINT" property="operatorState"/>
+        <result column="menu_id" jdbcType="BIGINT" property="menuId"/>
+        <result column="permission_id" jdbcType="BIGINT" property="permissionId"/>
+    </resultMap>
+
+    <!--<select id="selectPermissionByUserId" parameterType="String" resultType="string">-->
+        <!--select distinct sp.permission from sys_permission sp-->
+        <!--inner join sys_role_permission srp on sp.id=srp.permission_id-->
+        <!--inner join sys_user_role sur on sur.role_id=srp.role_id-->
+        <!--where sur.user_id=#{userId}-->
+    <!--</select>-->
+
+</mapper>

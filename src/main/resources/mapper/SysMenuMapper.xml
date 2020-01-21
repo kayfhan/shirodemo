@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.kay.mapper.SysMenuMapper">
+    <resultMap id="BaseResultMap" type="me.kay.entity.sys.SysMenu">
+        <id column="menu_id" jdbcType="BIGINT" property="menuId"/>
+        <result column="parent_menu_id" jdbcType="BIGINT" property="parentMenuId"/>
+        <result column="menu_name" jdbcType="VARCHAR" property="menuName"/>
+        <result column="menu_level" jdbcType="BIGINT" property="menuLevel"/>
+        <result column="menu_seq" jdbcType="BIGINT" property="menuSeq"/>
+        <result column="menu_url" jdbcType="VARCHAR" property="menuUrl"/>
+        <result column="menu_status" jdbcType="BIGINT" property="menuStatus"/>
+        <result column="permission_id" jdbcType="BIGINT" property="permissionId"/>
+    </resultMap>
+
+    <select id="selectMenuTreeByUserId" parameterType="String" resultType="me.kay.entity.sys.SysMenu">
+        select * from sys_menu where permission_id in (select sp.permission_id from sys_permission sp
+        inner join sys_role_permission srp on sp.permission_id=srp.permission_id
+        inner join sys_user_role sur on sur.role_id=srp.role_id
+        where sur.user_id=#{userId} and permission_type=1);
+    </select>
+
+</mapper>
